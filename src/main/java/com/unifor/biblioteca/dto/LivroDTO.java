@@ -2,13 +2,13 @@ package com.unifor.biblioteca.dto;
 
 public class LivroDTO {
 
-    private int id;
+    private Integer id;
     private String titulo;
     private String autor;
     private int ano;
     private String status;
 
-    public LivroDTO ( int id, String titulo, String autor, int ano, String status ) {
+    public LivroDTO ( Integer id, String titulo, String autor, int ano, String status ) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -17,7 +17,7 @@ public class LivroDTO {
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -37,7 +37,7 @@ public class LivroDTO {
         return status;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

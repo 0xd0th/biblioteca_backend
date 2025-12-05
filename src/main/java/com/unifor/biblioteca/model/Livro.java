@@ -1,0 +1,68 @@
+package com.unifor.biblioteca.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "livros")
+public class Livro {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String titulo;
+    private String autor;
+    private int ano;
+    private String status; // Ex: "DISPONIVEL", "EMPRESTADO"
+
+    // Construtor vazio (obrigatório para o JPA)
+    public Livro() {}
+
+    // Construtor cheio
+    public Livro(String titulo, String autor, int ano, String status) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ano = ano;
+        this.status = status;
+    }
+
+    // Getters e Setters
+    public Integer getId() { 
+        return id; 
+    }
+
+    public void setId(Integer id) { 
+        this.id = id;
+    }
+
+    public String getTitulo() { 
+        return titulo; 
+    }
+    public void setTitulo(String titulo) { 
+        this.titulo = titulo; 
+    }
+
+    public String getAutor() { 
+        return autor; 
+    }
+
+    public void setAutor(String autor) { 
+        this.autor = autor; 
+    }
+
+    public int getAno() { 
+        return ano; 
+    }
+
+    public void setAno(int ano) { 
+        this.ano = ano; 
+    }
+
+    public String getStatus() { 
+        return status; 
+    }
+
+    public void setStatus(String status) { 
+        this.status = status; 
+    }
+}
