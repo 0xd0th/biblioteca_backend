@@ -3,12 +3,12 @@ package com.unifor.biblioteca.dto;
 public class JogoDTO {
 
     private int id;
-    private String nome;
+    private String titulo;
     private String status;
 
-    public JogoDTO(int id, String nome, String status) {
+    public JogoDTO(int id, String titulo, String status) {
         this.id = id;
-        this.nome = nome;
+        this.titulo = titulo;
         this.status = status;
     }
 
@@ -20,12 +20,12 @@ public class JogoDTO {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getStatus() {
