@@ -107,14 +107,14 @@ public class EmprestimoService {
         if (emprestimo == null) {
             return "Erro: Não há empréstimo ativo para este jogo.";
         }
-
         emprestimo.setStatus("FINALIZADO");
+
+        emprestimo.setDataDevolucaoReal(LocalDate.now());
+
         emprestimoJogoRepository.save(emprestimo);
 
         jogo.setStatus("DISPONIVEL");
         jogoRepository.save(jogo);
-
-        emprestimo.setDataDevolucaoReal(LocalDate.now());
 
         return "Sucesso: O jogo '" + jogo.getTitulo() + "' foi devolvido!";
     }
