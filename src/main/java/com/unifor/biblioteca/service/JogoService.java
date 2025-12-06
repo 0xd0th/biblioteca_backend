@@ -42,7 +42,7 @@ public class JogoService {
 
     private Jogo toEntity(JogoDTO dto) {
         Jogo jogo = new Jogo();
-        jogo.setTitulo(dto.getNome());
+        jogo.setTitulo(dto.getTitulo());
         jogo.setStatus(dto.getStatus());
         return jogo;
     }
