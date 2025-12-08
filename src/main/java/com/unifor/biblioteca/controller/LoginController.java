@@ -1,7 +1,7 @@
 package com.unifor.biblioteca.controller;
 
-import com.unifor.biblioteca.dto.LoginRequestDTO;
-import com.unifor.biblioteca.dto.LoginResponseDTO;
+import com.unifor.biblioteca.controller.dto.LoginRequestDTO;
+import com.unifor.biblioteca.controller.dto.LoginResponseDTO;
 import com.unifor.biblioteca.exception.AuthenticationException;
 import com.unifor.biblioteca.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;

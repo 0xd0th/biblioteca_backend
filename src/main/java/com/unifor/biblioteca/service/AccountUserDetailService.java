@@ -1,7 +1,7 @@
 package com.unifor.biblioteca.service;
 
 
-import com.unifor.biblioteca.repository.UserRepository;
+import com.unifor.biblioteca.data.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +22,7 @@ public class AccountUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername( String matricula ) {
-        com.unifor.biblioteca.model.User user = userRepository.findByMatricula(matricula);
+        com.unifor.biblioteca.data.model.User user = userRepository.findByMatricula(matricula);
 
         if( user == null )
             throw new UsernameNotFoundException("Usuário não encontrado: $username");

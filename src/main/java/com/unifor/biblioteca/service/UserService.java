@@ -2,16 +2,13 @@
 
 package com.unifor.biblioteca.service;
 
-import com.unifor.biblioteca.dto.UserRequestDTO;
-import com.unifor.biblioteca.dto.UserResponseDTO;
-import com.unifor.biblioteca.model.Jogo;
-import com.unifor.biblioteca.model.User;
-import com.unifor.biblioteca.repository.UserRepository;
+import com.unifor.biblioteca.controller.dto.UserRequestDTO;
+import com.unifor.biblioteca.controller.dto.UserResponseDTO;
+import com.unifor.biblioteca.data.model.User;
+import com.unifor.biblioteca.data.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class UserService {
@@ -42,8 +39,9 @@ public class UserService {
 
     }
 
-    public UserResponseDTO pegar( String authHeader ) {
-        String token = authHeader.substring(7);
+    public UserResponseDTO pegar( HttpServletRequest request ) {
+
+        String token = jwtService.extractToken(request);
 
         if( !jwtService.validateToken(token) )
             return null;

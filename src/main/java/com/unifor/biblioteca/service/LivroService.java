@@ -1,8 +1,8 @@
 package com.unifor.biblioteca.service;
 
-import com.unifor.biblioteca.dto.LivroResponseDTO;
-import com.unifor.biblioteca.model.Livro;
-import com.unifor.biblioteca.repository.LivroRepository;
+import com.unifor.biblioteca.controller.dto.LivroResponseDTO;
+import com.unifor.biblioteca.data.model.Livro;
+import com.unifor.biblioteca.data.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

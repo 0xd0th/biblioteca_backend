@@ -1,8 +1,8 @@
 package com.unifor.biblioteca.service;
 
-import com.unifor.biblioteca.dto.JogoResponseDTO;
-import com.unifor.biblioteca.model.Jogo;
-import com.unifor.biblioteca.repository.JogoRepository;
+import com.unifor.biblioteca.controller.dto.JogoResponseDTO;
+import com.unifor.biblioteca.data.model.Jogo;
+import com.unifor.biblioteca.data.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

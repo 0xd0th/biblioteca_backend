@@ -1,43 +1,42 @@
-package com.unifor.biblioteca.model;
+package com.unifor.biblioteca.data.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "estudante_has_jogo")
-public class EmprestimoJogo {
+@Table(name = "estudante_has_livro")
+public class EmprestimoLivro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    // Relacionamento com o USUÁRIO (Aluno)
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id") 
     private User user;
 
+    // Relacionamento com o LIVRO
     @ManyToOne
-    @JoinColumn(name = "jogo_id")
-    private Jogo jogo;
+    @JoinColumn(name = "livro_id")
+    private Livro livro;
 
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucaoPrevista;
+    private LocalDate dataDevolucaoReal;
     
-    // --- AQUI ESTÁ A VARIÁVEL QUE FALTAVA ---
-    private LocalDate dataDevolucaoReal; 
-    
-    private String status;
+    private String status; // Ex: "ATIVO", "FINALIZADO", "ATRASADO"
 
-    public EmprestimoJogo() {}
+    public EmprestimoLivro() {}
 
-    public EmprestimoJogo(User user, Jogo jogo, LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista) {
+    public EmprestimoLivro(User user, Livro livro, LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista) {
         this.user = user;
-        this.jogo = jogo;
+        this.livro = livro;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucaoPrevista = dataDevolucaoPrevista;
         this.status = "ATIVO";
     }
 
-    // Getters e Setters
     public Integer getId() { 
         return id; 
     }
@@ -52,20 +51,20 @@ public class EmprestimoJogo {
         this.user = user; 
     }
 
-    public Jogo getJogo() { 
-        return jogo; 
+    public Livro getLivro() { 
+        return livro; 
     }
-    public void setJogo(Jogo jogo) { 
-        this.jogo = jogo; 
+    public void setLivro(Livro livro) { 
+        this.livro = livro; 
     }
 
-    public LocalDate getDataEmprestimo() {
+    public LocalDate getDataEmprestimo() { 
         return dataEmprestimo; 
     }
     public void setDataEmprestimo(LocalDate dataEmprestimo) { 
         this.dataEmprestimo = dataEmprestimo; 
     }
-    
+
     public LocalDate getDataDevolucaoPrevista() { 
         return dataDevolucaoPrevista; 
     }

@@ -1,15 +1,15 @@
 package com.unifor.biblioteca.service;
 
-import com.unifor.biblioteca.model.User;
+import com.unifor.biblioteca.data.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
-import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
@@ -73,5 +73,13 @@ public class JWTService {
 
 
     }
+
+    public String extractToken(HttpServletRequest request) {
+
+        String authHeader = request.getHeader("Authorization");
+        return authHeader.substring(7);
+
+    }
+
 
 }

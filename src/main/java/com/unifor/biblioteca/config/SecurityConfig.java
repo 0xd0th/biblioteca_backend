@@ -1,6 +1,6 @@
 package com.unifor.biblioteca.config;
 
-import com.unifor.biblioteca.filter.JWTAuthenticationFilter;
+import com.unifor.biblioteca.config.filter.JWTAuthenticationFilter;
 import com.unifor.biblioteca.service.AccountUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -81,7 +81,6 @@ public class SecurityConfig {
                         .requestMatchers(h2ConsoleMatcher).permitAll()
                         .requestMatchers(errorEndpointMatcher).permitAll()
                         .requestMatchers(authEndpointMatcher).permitAll()
-                        .requestMatchers(HttpMethod.GET, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .anyRequest().authenticated()
                 )

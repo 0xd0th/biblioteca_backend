@@ -1,4 +1,4 @@
-package com.unifor.biblioteca.model;
+package com.unifor.biblioteca.data.model;
 
 import jakarta.persistence.*;
 

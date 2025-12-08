@@ -1,4 +1,4 @@
-package com.unifor.biblioteca.dto;
+package com.unifor.biblioteca.controller.dto;
 
 public class LivroResponseDTO {
 

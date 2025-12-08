@@ -1,6 +1,6 @@
 package com.unifor.biblioteca.controller;
 
-import com.unifor.biblioteca.dto.LivroResponseDTO;
+import com.unifor.biblioteca.controller.dto.LivroResponseDTO;
 import com.unifor.biblioteca.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.unifor.biblioteca.filter;
+package com.unifor.biblioteca.config.filter;
 
 import com.unifor.biblioteca.service.AccountUserDetailService;
 import com.unifor.biblioteca.service.JWTService;

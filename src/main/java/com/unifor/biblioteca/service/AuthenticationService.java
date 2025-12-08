@@ -1,10 +1,10 @@
 package com.unifor.biblioteca.service;
 
-import com.unifor.biblioteca.dto.LoginRequestDTO;
-import com.unifor.biblioteca.dto.LoginResponseDTO;
+import com.unifor.biblioteca.controller.dto.LoginRequestDTO;
+import com.unifor.biblioteca.controller.dto.LoginResponseDTO;
 import com.unifor.biblioteca.exception.AuthenticationException;
-import com.unifor.biblioteca.model.User;
-import com.unifor.biblioteca.repository.UserRepository;
+import com.unifor.biblioteca.data.model.User;
+import com.unifor.biblioteca.data.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

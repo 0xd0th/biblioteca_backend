@@ -1,6 +1,6 @@
 package com.unifor.biblioteca.controller;
 
-import com.unifor.biblioteca.dto.JogoResponseDTO;
+import com.unifor.biblioteca.controller.dto.JogoResponseDTO;
 import com.unifor.biblioteca.service.JogoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
