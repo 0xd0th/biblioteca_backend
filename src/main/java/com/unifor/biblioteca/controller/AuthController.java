@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -42,9 +44,9 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<String> deslogar(HttpServletRequest request) {
+    public ResponseEntity<Map<String,String>> deslogar(HttpServletRequest request) {
         logoutService.adicionar(request);
-        return ResponseEntity.ok("Usuario Deslogado!");
+        return ResponseEntity.ok(Map.of("message", "usuario deslogado"));
     }
 
 

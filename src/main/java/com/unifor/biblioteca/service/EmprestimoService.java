@@ -1,6 +1,7 @@
 package com.unifor.biblioteca.service;
 
 import com.unifor.biblioteca.controller.dto.EmprestimoRequestDTO;
+import com.unifor.biblioteca.controller.dto.JogoResponseDTO;
 import com.unifor.biblioteca.controller.dto.LivroResponseDTO;
 import com.unifor.biblioteca.data.model.*;
 import com.unifor.biblioteca.data.repository.*;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,16 +33,57 @@ public class EmprestimoService {
     @Autowired
     private JogoRepository jogoRepository;
 
-    public List<LivroResponseDTO> pegarTodos( HttpServletRequest request ) {
+    public List<LivroResponseDTO> pegarTodosLivros( HttpServletRequest request ) {
         String token = jwtService.extractToken(request);
         String matricula = jwtService.extractMatricula(token);
 
+        User aluno = userRepository.findByMatricula(matricula);
+        List<EmprestimoLivro> emprestimos = emprestimoLivroRepository.findByUserId(aluno.getId());
 
+        List<LivroResponseDTO> livrosdtos = new ArrayList<>();
+        for( EmprestimoLivro emprestimo : emprestimos ) {
+            Livro livro = emprestimo.getLivro();
+            livrosdtos.add(new LivroResponseDTO(
+                    livro.getId(),
+                    livro.getTitulo(),
+                    livro.getAutor(),
+                    livro.getAno(),
+                    livro.getStatus()
+            ));
+        }
+
+        return livrosdtos;
+
+    }
+
+    public List<JogoResponseDTO> pegarTodosJogos( HttpServletRequest request ) {
+        String token = jwtService.extractToken(request);
+        String matricula = jwtService.extractMatricula(token);
+
+        User aluno = userRepository.findByMatricula(matricula);
+        List<EmprestimoJogo> emprestimos = emprestimoJogoRepository.findByUserId(aluno.getId());
+
+        List<JogoResponseDTO> jogosdtos = new ArrayList<>();
+        for ( EmprestimoJogo emprestimo : emprestimos ) {
+            Jogo jogo = emprestimo.getJogo();
+            jogosdtos.add( new JogoResponseDTO(
+                    jogo.getId(),
+                    jogo.getTitulo(),
+                    jogo.getMaxJogadores(),
+                    jogo.getMinJogadores(),
+                    jogo.getEditora(),
+                    jogo.getGenero(),
+                    jogo.getStatus()
+            ));
+        }
+
+        return jogosdtos;
 
     }
 
 
-    // Lógica para LIVROS
+
+        // Lógica para LIVROS
     public String realizarEmprestimoLivro(HttpServletRequest request, int idLivro) {
 
         String token = jwtService.extractToken(request);
@@ -157,4 +200,6 @@ public class EmprestimoService {
 
         return "Sucesso: O jogo '" + jogo.getTitulo() + "' foi devolvido!";
     }
+
+
 }

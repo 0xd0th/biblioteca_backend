@@ -1,12 +1,15 @@
 package com.unifor.biblioteca.controller;
 
 import com.unifor.biblioteca.controller.dto.EmprestimoRequestDTO;
+import com.unifor.biblioteca.controller.dto.JogoResponseDTO;
 import com.unifor.biblioteca.controller.dto.LivroResponseDTO;
 import com.unifor.biblioteca.service.EmprestimoService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/emprestimo")
@@ -16,8 +19,12 @@ public class EmprestimoController {
     private EmprestimoService emprestimoService;
 
     @GetMapping("/livro")
-    public ResponseEntity<LivroResponseDTO> pegarLivrosEmprestados( HttpServletRequest request ) {
-        emprestimoService
+    public ResponseEntity<List<LivroResponseDTO>> pegarLivrosEmprestados(HttpServletRequest request ) {
+        return ResponseEntity.ok(emprestimoService.pegarTodosLivros(request));
+    }
+    @GetMapping("/jogo")
+    public ResponseEntity<List<JogoResponseDTO>> pegarJogosEmprestados(HttpServletRequest request ) {
+        return ResponseEntity.ok(emprestimoService.pegarTodosJogos(request));
     }
 
     @GetMapping("/livro/{idLivro}")
