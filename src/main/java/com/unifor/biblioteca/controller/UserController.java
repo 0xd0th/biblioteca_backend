@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -19,9 +21,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<String> cadastrar(@RequestBody UserRequestDTO usuario) {
+    public ResponseEntity<Map<String, String>> cadastrar(@RequestBody UserRequestDTO usuario) {
         String responseMessage = userService.cadastrar(usuario);
-        return ResponseEntity.ok(responseMessage);
+        return ResponseEntity.ok(Map.of("message", "usuário cadastrado com sucesso"));
     }
 
     @GetMapping

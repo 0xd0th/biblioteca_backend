@@ -1,6 +1,7 @@
 package com.unifor.biblioteca.service;
 
 import com.unifor.biblioteca.controller.dto.EmprestimoRequestDTO;
+import com.unifor.biblioteca.controller.dto.LivroResponseDTO;
 import com.unifor.biblioteca.data.model.*;
 import com.unifor.biblioteca.data.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class EmprestimoService {
@@ -28,6 +30,14 @@ public class EmprestimoService {
     private EmprestimoJogoRepository emprestimoJogoRepository;
     @Autowired
     private JogoRepository jogoRepository;
+
+    public List<LivroResponseDTO> pegarTodos( HttpServletRequest request ) {
+        String token = jwtService.extractToken(request);
+        String matricula = jwtService.extractMatricula(token);
+
+
+
+    }
 
 
     // Lógica para LIVROS

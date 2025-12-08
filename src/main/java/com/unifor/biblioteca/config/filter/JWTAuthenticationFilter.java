@@ -2,6 +2,7 @@ package com.unifor.biblioteca.config.filter;
 
 import com.unifor.biblioteca.service.AccountUserDetailService;
 import com.unifor.biblioteca.service.JWTService;
+import com.unifor.biblioteca.service.LogoutService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,12 +22,16 @@ import java.io.IOException;
 public class JWTAuthenticationFilter extends OncePerRequestFilter  {
 
     private JWTService jwtService;
+    private LogoutService logoutService;
     private AccountUserDetailService userDetailService;
 
     public JWTAuthenticationFilter( JWTService jwtService,
-                                    AccountUserDetailService userDetailService) {
+                                    AccountUserDetailService userDetailService,
+                                    LogoutService logoutService
+    ) {
         this.jwtService = jwtService;
         this.userDetailService = userDetailService;
+        this.logoutService = logoutService;
     }
 
     @Override
@@ -47,7 +52,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter  {
 
             if (
                     userMatricula != null &&
-                    SecurityContextHolder.getContext().getAuthentication() == null
+                    SecurityContextHolder.getContext().getAuthentication() == null &&
+                            !logoutService.consultar(userMatricula, jwt)
             ) {
 
                 UserDetails userDetails = userDetailService.loadUserByUsername(userMatricula);

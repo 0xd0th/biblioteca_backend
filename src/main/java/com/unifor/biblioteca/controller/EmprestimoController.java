@@ -1,6 +1,7 @@
 package com.unifor.biblioteca.controller;
 
 import com.unifor.biblioteca.controller.dto.EmprestimoRequestDTO;
+import com.unifor.biblioteca.controller.dto.LivroResponseDTO;
 import com.unifor.biblioteca.service.EmprestimoService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,11 @@ public class EmprestimoController {
 
     @Autowired
     private EmprestimoService emprestimoService;
+
+    @GetMapping("/livro")
+    public ResponseEntity<LivroResponseDTO> pegarLivrosEmprestados( HttpServletRequest request ) {
+        emprestimoService
+    }
 
     @GetMapping("/livro/{idLivro}")
     public ResponseEntity<String> emprestarLivro(@PathVariable Integer idLivro, HttpServletRequest request) {

@@ -4,20 +4,28 @@ import com.unifor.biblioteca.controller.dto.LoginRequestDTO;
 import com.unifor.biblioteca.controller.dto.LoginResponseDTO;
 import com.unifor.biblioteca.exception.AuthenticationException;
 import com.unifor.biblioteca.service.AuthenticationService;
+import com.unifor.biblioteca.service.LogoutService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-public class LoginController {
+public class AuthController {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
     private AuthenticationService authenticationService;
+    private LogoutService logoutService;
 
-    public LoginController(AuthenticationService authenticationService) {
+    public AuthController(
+            AuthenticationService authenticationService,
+            LogoutService logoutService
+    ) {
         this.authenticationService = authenticationService;
+        this.logoutService = logoutService;
     }
 
     @PostMapping("/login")
@@ -32,6 +40,13 @@ public class LoginController {
 
         return ResponseEntity.ok(loginResponse);
     }
+
+    @GetMapping("/logout")
+    public ResponseEntity<String> deslogar(HttpServletRequest request) {
+        logoutService.adicionar(request);
+        return ResponseEntity.ok("Usuario Deslogado!");
+    }
+
 
 
 }
