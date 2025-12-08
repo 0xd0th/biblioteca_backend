@@ -1,14 +1,14 @@
 package com.unifor.biblioteca.dto;
 
 public class EmprestimoRequestDTO {
-    private int matricula;
-    private int idItem; // Pode ser ID do livro ou do jogo
+    private String matricula;
+    private int idItem;
 
     // Getters e Setters
-    public Integer getMatricula() { 
+    public String getMatricula() {
         return matricula; 
     }
-    public void setMatricula(Integer matricula) { 
+    public void setMatricula(String matricula) {
         this.matricula = matricula; 
     }
 

@@ -1,6 +1,6 @@
 package com.unifor.biblioteca.controller;
 
-import com.unifor.biblioteca.dto.LivroDTO;
+import com.unifor.biblioteca.dto.LivroResponseDTO;
 import com.unifor.biblioteca.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +21,13 @@ public class LivroController {
     }
 
     @GetMapping
-    public ResponseEntity<List<LivroDTO>> listar() {
+    public ResponseEntity<List<LivroResponseDTO>> listar() {
         return ResponseEntity.ok(livroService.pegarTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LivroDTO> pegar(@PathVariable int id) {
-        LivroDTO livro = livroService.pegar(id);
+    public ResponseEntity<LivroResponseDTO> pegar(@PathVariable int id) {
+        LivroResponseDTO livro = livroService.pegar(id);
         if (livro != null) {
             return ResponseEntity.ok(livro);
         }
@@ -35,8 +35,8 @@ public class LivroController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<String> cadastrar(@RequestBody LivroDTO livro) {
-        LivroDTO livroCadastrado = livroService.cadastrar(livro);
+    public ResponseEntity<String> cadastrar(@RequestBody LivroResponseDTO livro) {
+        LivroResponseDTO livroCadastrado = livroService.cadastrar(livro);
         if (livroCadastrado == null)
             return ResponseEntity.badRequest().body("erro ao cadastrar livro");
 

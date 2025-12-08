@@ -1,6 +1,6 @@
 package com.unifor.biblioteca.dto;
 
-public class LivroDTO {
+public class LivroResponseDTO {
 
     private Integer id;
     private String titulo;
@@ -8,7 +8,7 @@ public class LivroDTO {
     private int ano;
     private String status;
 
-    public LivroDTO ( Integer id, String titulo, String autor, int ano, String status ) {
+    public LivroResponseDTO(Integer id, String titulo, String autor, int ano, String status ) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;

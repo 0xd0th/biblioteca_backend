@@ -9,6 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface EmprestimoLivroRepository extends JpaRepository<EmprestimoLivro, Integer> {
-    // Busca um empréstimo desse livro que ainda esteja com status ATIVO
     Optional<EmprestimoLivro> findByLivroAndStatus(Livro livro, String status);
 }

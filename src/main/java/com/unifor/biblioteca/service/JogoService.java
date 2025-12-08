@@ -1,6 +1,6 @@
 package com.unifor.biblioteca.service;
 
-import com.unifor.biblioteca.dto.JogoDTO;
+import com.unifor.biblioteca.dto.JogoResponseDTO;
 import com.unifor.biblioteca.model.Jogo;
 import com.unifor.biblioteca.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,31 +18,31 @@ public class JogoService {
 
     public JogoService() {}
 
-    public List<JogoDTO> pegarTodos() {
+    public List<JogoResponseDTO> pegarTodos() {
         return jogoRepository.findAll().stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public JogoDTO pegarPorId(int id) {
+    public JogoResponseDTO pegarPorId(int id) {
         Optional<Jogo> jogo = jogoRepository.findById(id);
         return jogo.map(this::toDTO).orElse(null);
     }
 
-    public void cadastrar(JogoDTO jogoDTO) {
+    public void cadastrar(JogoResponseDTO jogoDTO) {
         Jogo jogo = toEntity(jogoDTO);
         jogoRepository.save(jogo);
     }
 
-    // --- Conversores ---
 
-    private JogoDTO toDTO(Jogo jogo) {
-        return new JogoDTO(jogo.getId(), jogo.getTitulo(), jogo.getStatus()); 
+    private JogoResponseDTO toDTO(Jogo jogo) {
+        return new JogoResponseDTO(jogo.getId(), jogo.getTitulo(), jogo.getMaxJogadores(), jogo.getMinJogadores(),
+                jogo.getEditora(), jogo.getGenero(), jogo.getStatus());
     }
 
-    private Jogo toEntity(JogoDTO dto) {
+    private Jogo toEntity(JogoResponseDTO dto) {
         Jogo jogo = new Jogo();
-        jogo.setTitulo(dto.getNome());
+        jogo.setTitulo(dto.getTitulo());
         jogo.setStatus(dto.getStatus());
         return jogo;
     }

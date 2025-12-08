@@ -5,11 +5,13 @@ import com.unifor.biblioteca.dto.UserRequestDTO;
 import com.unifor.biblioteca.dto.LoginRequestDTO;
 import com.unifor.biblioteca.dto.UserResponseDTO;
 import com.unifor.biblioteca.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
@@ -18,19 +20,15 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/logar")
-    public ResponseEntity<UserResponseDTO> logar(@RequestBody LoginRequestDTO usuario) {
-        return null;
-    };
-
-    @PostMapping("/cadastrar")
-    public void cadastrar(@RequestBody UserRequestDTO usuario) {
-        userService.cadastrar(usuario);
+    @PostMapping
+    public ResponseEntity<String> cadastrar(@RequestBody UserRequestDTO usuario) {
+        String responseMessage = userService.cadastrar(usuario);
+        return ResponseEntity.ok(responseMessage);
     }
 
-    @GetMapping("/{matricula}")
-    public ResponseEntity<UserResponseDTO> pegarUsuario( @PathVariable int matricula ) {
-        return ResponseEntity.ok(userService.pegar(matricula));
+    @GetMapping
+    public ResponseEntity<UserResponseDTO> pegarUsuario(HttpServletRequest request) {
+        return ResponseEntity.ok(userService.pegar(request.getHeader("Authorization")));
     }
 
 

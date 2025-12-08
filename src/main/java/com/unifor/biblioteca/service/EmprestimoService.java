@@ -1,8 +1,8 @@
 package com.unifor.biblioteca.service;
 
 import com.unifor.biblioteca.dto.EmprestimoRequestDTO;
-import com.unifor.biblioteca.model.*;
 import com.unifor.biblioteca.repository.*;
+import com.unifor.biblioteca.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

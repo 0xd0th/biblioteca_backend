@@ -3,14 +3,14 @@ package com.unifor.biblioteca.dto;
 
 public class LoginRequestDTO {
 
-    private int matricula;
+    private String matricula;
     private String senha;
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

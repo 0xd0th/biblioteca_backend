@@ -11,22 +11,22 @@ public class User {
     private Integer id;
 
     @Column(unique = true, nullable = false)
-    private int matricula;
+    private String matricula;
 
     private String nome;
     private String sobrenome;
     private String curso;
-    private String senha;
+    private String senhaCodificada;
 
     public User() {}
 
     // Construtor utilitário
-    public User(int matricula, String nome, String sobrenome, String curso, String senha) {
+    public User(String matricula, String nome, String sobrenome, String curso, String senhaCodificada) {
         this.matricula = matricula;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.curso = curso;
-        this.senha = senha;
+        this.senhaCodificada = senhaCodificada;
     }
 
     // Getters e Setters
@@ -37,10 +37,10 @@ public class User {
         this.id = id; 
     }
 
-    public int getMatricula() { 
+    public String getMatricula() {
         return matricula; 
     }
-    public void setMatricula(int matricula) { 
+    public void setMatricula(String matricula) {
         this.matricula = matricula; 
     }
 
@@ -65,10 +65,10 @@ public class User {
         this.curso = curso; 
     }
 
-    public String getSenha() { 
-        return senha; 
+    public String getSenhaCodificada() {
+        return senhaCodificada;
     }
-    public void setSenha(String senha) { 
-        this.senha = senha; 
+    public void setSenhaCodificada(String senhaCodificada) {
+        this.senhaCodificada = senhaCodificada;
     }
 }

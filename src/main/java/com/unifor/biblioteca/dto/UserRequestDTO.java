@@ -2,17 +2,17 @@ package com.unifor.biblioteca.dto;
 
 public class UserRequestDTO {
 
-    public int matricula;
+    public String matricula;
     public String nome;
     public String sobrenome;
     public String senha;
     public String curso;
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -48,5 +48,14 @@ public class UserRequestDTO {
         this.senha = senha;
     }
 
-
+    @Override
+    public String toString() {
+        return "UserRequestDTO{" +
+                "matricula='" + matricula + '\'' +
+                ", nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", senha='" + senha + '\'' +
+                ", curso='" + curso + '\'' +
+                '}';
+    }
 }

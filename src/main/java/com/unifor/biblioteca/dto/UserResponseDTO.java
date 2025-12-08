@@ -2,23 +2,23 @@ package com.unifor.biblioteca.dto;
 
 public class UserResponseDTO {
 
-    public int matricula;
+    public String matricula;
     public String nome;
     public String sobrenome;
     public String curso;
 
-    public UserResponseDTO(int matricula, String nome, String sobrenome, String curso) {
+    public UserResponseDTO(String matricula, String nome, String sobrenome, String curso) {
         this.matricula = matricula;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.curso = curso;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

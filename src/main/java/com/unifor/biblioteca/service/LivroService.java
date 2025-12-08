@@ -1,6 +1,6 @@
 package com.unifor.biblioteca.service;
 
-import com.unifor.biblioteca.dto.LivroDTO;
+import com.unifor.biblioteca.dto.LivroResponseDTO;
 import com.unifor.biblioteca.model.Livro;
 import com.unifor.biblioteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class LivroService {
 
     public LivroService() {}
 
-    public List<LivroDTO> pegarTodos() {
+    public List<LivroResponseDTO> pegarTodos() {
         List<Livro> livrosBanco = livroRepository.findAll();
         
         return livrosBanco.stream()
@@ -26,12 +26,12 @@ public class LivroService {
                 .collect(Collectors.toList());
     }
 
-    public LivroDTO pegar(int id) {
+    public LivroResponseDTO pegar(int id) {
         Optional<Livro> livroBanco = livroRepository.findById(id);
         return livroBanco.map(this::toDTO).orElse(null);
     }
 
-    public LivroDTO cadastrar(LivroDTO livroDTO) {
+    public LivroResponseDTO cadastrar(LivroResponseDTO livroDTO) {
         // Converte DTO -> Entidade para salvar no banco
         Livro livroParaSalvar = toEntity(livroDTO);
         
@@ -44,8 +44,8 @@ public class LivroService {
 
     // --- Métodos Auxiliares de Conversão ---
     
-    private LivroDTO toDTO(Livro livro) {
-        return new LivroDTO(
+    private LivroResponseDTO toDTO(Livro livro) {
+        return new LivroResponseDTO(
             livro.getId(),
             livro.getTitulo(),
             livro.getAutor(),
@@ -54,7 +54,7 @@ public class LivroService {
         );
     }
 
-    private Livro toEntity(LivroDTO dto) {
+    private Livro toEntity(LivroResponseDTO dto) {
         return new Livro(
             dto.getTitulo(),
             dto.getAutor(),
