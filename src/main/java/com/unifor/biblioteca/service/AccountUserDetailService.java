@@ -30,7 +30,7 @@ public class AccountUserDetailService implements UserDetailsService {
         return new User(
             user.getMatricula(),
                 user.getSenhaCodificada(),
-                setOf(new SimpleGrantedAuthority("ROLE_ADMIN"))
+                setOf(new SimpleGrantedAuthority("USER"))
         );
 
 

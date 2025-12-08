@@ -38,7 +38,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter  {
 
         try {
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                // nenhum token → só segue o fluxo SEM autenticação
                 filterChain.doFilter(request, response);
                 return;
             }
@@ -46,8 +45,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter  {
             String jwt = authHeader.substring(7);
             String userMatricula = jwtService.extractMatricula(jwt);
 
-            if (userMatricula != null &&
-                    SecurityContextHolder.getContext().getAuthentication() == null) {
+            if (
+                    userMatricula != null &&
+                    SecurityContextHolder.getContext().getAuthentication() == null
+            ) {
 
                 UserDetails userDetails = userDetailService.loadUserByUsername(userMatricula);
 
